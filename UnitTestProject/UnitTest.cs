@@ -101,9 +101,15 @@ namespace UnitTestProject
             a.setresult = 6;
             b.setresult = 4;
             game.IsWinnerSet();
-            Assert.IsTrue(game.sets.Count == 1);
+            Assert.IsTrue(game.sets.Count == 0);
         }
 
-  
+        [TestMethod]
+        public void gameresult()
+        {
+            List<string> list = new List<string>() { "AA","AA","AAAA" };
+            List<string> r = game.playGame(list);
+        }
+
     }
 }

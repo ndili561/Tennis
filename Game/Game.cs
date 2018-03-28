@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Services;
 namespace Game
 {
@@ -51,7 +52,7 @@ namespace Game
 
         public bool IsDeuce()
         {
-            if(_playera.gameresult >=3 & _playerb.gameresult == _playera.gameresult)
+            if((_playera.gameresult >=3 | _playerb.gameresult>3)& _playerb.gameresult == _playera.gameresult)
             {
                 return true;
             }
@@ -86,12 +87,52 @@ namespace Game
             }
         }
 
-        public void IsWinnerSet()
+        public bool IsWinnerSet()
         {
-            if(_playera.setresult == 6 | _playerb.setresult==6)
+            if(_playera.setresult == 0 | _playerb.setresult==0)
             {
-                sets.Add(_playera.setresult, _playerb.setresult);
+              
+                return true;
             }
+            return false;
+        }
+
+        public List<string> playGame(List<string> list)
+        {
+            string advatage = "A";
+            List<string> result = new List<string>();
+            foreach(string str in list)
+            {
+                _playera.gameresult = this.score( str.Count(x => x == 'A'));
+                _playerb.gameresult = this.score( str.Count(x => x == 'B'));
+                if (IsDeuce())
+                {
+                    if(_playera.gameresult == 0)
+                    {
+                        result.Add(advatage+"-"+_playerb.gameresult.ToString());
+                    }
+                    if (_playerb.gameresult == 0)
+                    {
+                        result.Add(_playera.gameresult.ToString()+"-"+advatage);
+                    }
+                }
+                if (IsWinnerSet())
+                {
+                    if (_playera.gameresult == 0)
+                    {
+                        result.Add(_playera.setresult + 1 + "-" + _playerb.setresult);
+                    }
+                    if (_playerb.gameresult == 0)
+                    {
+                        result.Add(_playera.setresult + "-" + _playerb.setresult+1);
+                    }
+
+
+                }
+                result.Add(_playera.gameresult.ToString()+"-"+_playerb.gameresult.ToString());
+
+            }
+            return result;
         }
     }
 }

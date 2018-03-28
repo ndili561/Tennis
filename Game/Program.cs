@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Services;
@@ -17,13 +18,15 @@ namespace Game
             string input, output;
             Console.WriteLine("Insert input path");
             input = Console.ReadLine();
-            if (CheckFile(input) & checkLetters(input))
+            if (CheckFile(input))
             {
                 Console.WriteLine("Insert output path");
                 output = Console.ReadLine();
                 if(CheckFile(output))
                 {
-                   service.readfile(input);
+                   List<string> result = service.readfile(input);
+                   List<string> gameResult =  game.playGame(result);
+                   service.write(gameResult,output);
                 }else
                 {
                     Console.WriteLine("File doesnt exists");

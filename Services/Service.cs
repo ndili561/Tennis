@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
+
 namespace Services
 {
     public class Service : IService
@@ -21,6 +22,22 @@ namespace Services
             }
             return result;
             
+        }
+
+        public void write(List<string> list, string output)
+        {
+            int count = list.Count-2;
+          
+                using (StreamWriter tw = new StreamWriter(output))
+                {
+                   
+                   tw.Write(Environment.NewLine + string.Format("{0,-30} {1,-30}", list[0], list[0],true));
+                  
+             
+                }
+
+            
+                    
         }
     }
 }
