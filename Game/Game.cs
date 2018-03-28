@@ -116,19 +116,19 @@ namespace Game
                         result.Add(_playera.gameresult.ToString()+"-"+advatage);
                     }
                 }
-                if (IsWinnerSet())
-                {
-                    if (_playera.gameresult == 0)
-                    {
-                        result.Add(_playera.setresult + 1 + "-" + _playerb.setresult);
-                    }
-                    if (_playerb.gameresult == 0)
-                    {
-                        result.Add(_playera.setresult + "-" + _playerb.setresult+1);
-                    }
+                //if (IsWinnerSet())
+                //{
+                //    if (_playera.gameresult == 0)
+                //    {
+                //        result.Add(_playera.setresult + 1 + "-" + _playerb.setresult);
+                //    }
+                //    if (_playerb.gameresult == 0)
+                //    {
+                //        result.Add(_playera.setresult + "-" + _playerb.setresult+1);
+                //    }
 
 
-                }
+                //}
                 result.Add(_playera.gameresult.ToString()+"-"+_playerb.gameresult.ToString());
 
             }

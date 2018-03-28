@@ -107,7 +107,7 @@ namespace UnitTestProject
         [TestMethod]
         public void gameresult()
         {
-            List<string> list = new List<string>() { "AA","AA","AAAA" };
+            List<string> list = new List<string>() { "A","AA","AAA" };
             List<string> r = game.playGame(list);
         }
 

@@ -52,13 +52,5 @@ namespace Game
                      
         }
 
-        public static bool checkLetters(string path)
-        {
-            if (!File.ReadAllText(path).Contains("A") | !File.ReadAllText(path).Contains("B"))
-            {
-                return false;
-            }
-            return true;
-        } 
     }
 }
