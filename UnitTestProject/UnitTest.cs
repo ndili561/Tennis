@@ -32,84 +32,90 @@ namespace UnitTestProject
         [TestMethod]
         public void TestMethodAdvantage()
         {
-            string test = "BAAAA";
-            List<string> testlist = new List<string>();
-            testlist.Add(test);       
-            a.gameresult = 4;
-            b.gameresult = 3;
-            bool result = game.IsAdvatage();
-            Assert.IsTrue(result);
+            List<string> list = new List<string>() { "BBBAAA" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.AreEqual(result.Contains("40-40"), true);
 
         }
 
         [TestMethod]
         public void testscore()
-        {         
-            Assert.AreEqual(game.score(1), 15);
+        {
+            List<string> list = new List<string>() { "BBBAAA","AAAA" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(result.Count==2);
         }
 
         [TestMethod]
         public void testscore2()
-        {       
-            Assert.AreEqual(game.score(2), 30);
+        {
+            List<string> list = new List<string>() { "AAA" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(result.Contains("40-0"));
         }
 
         [TestMethod]
         public void testscore3()
         {
-            Assert.AreEqual(game.score(3), 40);
+            List<string> list = new List<string>() { "AAB" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(result.Contains("30-15"));
         }
 
-        [TestMethod]
-        public void testscore4()
-        {
-            Assert.AreEqual(game.score(5), 0);
-        }
+        //[TestMethod]
+        //public void testscore4()
+        //{
+        //    Assert.AreEqual(game.score(5), 0);
+        //}
 
-        [TestMethod]
-        public void testdeuce()
-        {
-            
-            a.gameresult = 3;
-            b.gameresult = 3;
-            bool result = game.IsDeuce();
-            Assert.IsTrue(result);
+        //[TestMethod]
+        //public void testdeuce()
+        //{
 
-        }
+        //    //a.gameresult = 3;
+        //    //b.gameresult = 3;
+        //    //bool result = game.IsDeuce();
+        //    //Assert.IsTrue(result);
 
-        [TestMethod]
-        public void winner()
-        {
-            a.gameresult = 10;
-            b.gameresult = 4;
-            bool result = game.isWinnerGame();
-            Assert.IsTrue(result);
-        }
+        //}
 
-        [TestMethod]
-        public void addsets()
-        {
-            a.gameresult = 10;
-            b.gameresult = 4;
-            game.addset();
-            Assert.AreEqual(a.setresult, 1);
-        }
+        //[TestMethod]
+        //public void winner()
+        //{
+        //    //a.gameresult = 10;
+        //    //b.gameresult = 4;
+        //    //bool result = game.isWinnerGame();
+        //    //Assert.IsTrue(result);
+        //}
 
-        [TestMethod]
-        public void iswinnerset()
-        {
-            a.setresult = 6;
-            b.setresult = 4;
-            game.IsWinnerSet();
-            Assert.IsTrue(game.sets.Count == 0);
-        }
+        //[TestMethod]
+        //public void addsets()
+        //{
+        //    //a.gameresult = 10;
+        //    //b.gameresult = 4;
+        //    //game.addset();
+        //    //Assert.AreEqual(a.setresult, 1);
+        //}
 
-        [TestMethod]
-        public void gameresult()
-        {
-            List<string> list = new List<string>() { "A","AA","AAA" };
-            List<string> r = game.playGame(list);
-        }
+        //[TestMethod]
+        //public void iswinnerset()
+        //{
+        //    //a.setresult = 6;
+        //    //b.setresult = 4;
+        //    //game.IsWinnerSet();
+        //    //Assert.IsTrue(game.sets.Count == 0);
+        //}
+
+        //[TestMethod]
+        //public void gameresult()
+        //{
+
+
+        //}
 
     }
 }

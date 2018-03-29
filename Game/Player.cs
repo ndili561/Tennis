@@ -6,7 +6,7 @@ namespace Game
 {
     public class Player
     {
-        public int gameresult { get; set; }
+        public string gameresult { get; set; }
         public int setresult { get; set; }
     }
 }

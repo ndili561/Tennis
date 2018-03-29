@@ -25,7 +25,7 @@ namespace Game
                 if(CheckFile(output))
                 {
                    List<string> result = service.readfile(input);
-                   List<string> gameResult =  game.playGame(result);
+                   (List<string> gameResult,List<string>sets) =  game.playGame(result);
                    service.write(gameResult,output);
                 }else
                 {
