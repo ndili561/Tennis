@@ -25,8 +25,8 @@ namespace Game
                 if(CheckFile(output))
                 {
                    List<string> result = service.readfile(input);
-                   (List<string> gameResult,List<string>sets) =  game.playGame(result);
-                   service.write(gameResult,output);
+                   (List<string> gameResult,List<string>sets,List<string>setsplayed) =  game.playGame(result);
+                   service.write(gameResult,sets,setsplayed,output);
                 }else
                 {
                     Console.WriteLine("File doesnt exists");

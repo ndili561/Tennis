@@ -12,6 +12,7 @@ namespace Game
         private readonly Player _playerb;
         public List<string> sets { get; set; }
         public List<string> games { get; set; }
+        public List<string> setsPlayed { get; set; }
 
         public Game(IService service, Player a, Player b)
         {
@@ -20,6 +21,7 @@ namespace Game
             _playerb = b;
             sets = new List<string>();
             games = new List<string>();
+            setsPlayed = new List<string>();
         }
 
 
@@ -45,7 +47,7 @@ namespace Game
    
 
 
-        public (List<string>,List<string>) addGameAndSets(int a, int b)
+        public (List<string>,List<string>,List<string>) addGameAndSets(int a, int b)
         {
           
             if (a==40 & b<=30)
@@ -61,22 +63,33 @@ namespace Game
             else if (a==99 & b!=40 )
             {
                 _playera.setresult += 1;
+                sets.Add(_playera.setresult.ToString() + "-" + _playerb.setresult.ToString());
             }
             else if (b == 99 & a != 40)
             {
                 _playerb.setresult += 1;
+                sets.Add(_playera.setresult.ToString() + "-" + _playerb.setresult.ToString());
             }
-            if (a == 99)
+            if (a == 99 & b==40)
             {
                 string adv = a.ToString();
                 adv = "A";
                 games.Add(adv + "-" + b.ToString());
             }
-            else if(b == 99)
+            else if(b == 99 & a==40)
             {
                 string adv = b.ToString();
                 adv = "A";
                 games.Add(a.ToString() + "-" + adv);
+
+            }else if (a == 0)
+            {
+                _playera.setresult += 1;
+                sets.Add(_playera.setresult.ToString() + "-" + _playerb.setresult.ToString());
+            }else if (b == 0)
+            {
+                _playerb.setresult += 1;
+                sets.Add(_playera.setresult.ToString() + "-" + _playerb.setresult.ToString());
 
             }
             else
@@ -86,12 +99,23 @@ namespace Game
                 games.Add(_playera.gameresult.ToString() + "-" + _playerb.gameresult.ToString());
                 
             }
-            return (games, sets);
+            if(_playera.setresult==6 | _playerb.setresult == 6)
+            {
+                this.addCompletedSets(_playera.setresult, _playerb.setresult);
+            }
+            return (games, sets,setsPlayed);
                  
         }
 
+        private void addCompletedSets(int setresult1, int setresult2)
+        {
+            setsPlayed.Add(setresult1 + "-" + setresult2);
+        }
 
-        public (List<string>, List<string>) playGame(List<string> list)
+   
+
+
+        public (List<string>, List<string>,List<string>) playGame(List<string> list)
         {
             int pointap = 0;
             int pointbp = 0;
@@ -108,10 +132,10 @@ namespace Game
                 {
                    pointbp = this.score(str.Count(x => x == 'B'));
                 }
-             (games,sets) = addGameAndSets(pointap,pointbp);
+             (games,sets,setsPlayed) = addGameAndSets(pointap,pointbp);
                 
             }
-            return (games, sets);
+            return (games, sets,setsPlayed);
         }
     }
 }

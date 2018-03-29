@@ -66,56 +66,50 @@ namespace UnitTestProject
             Assert.IsTrue(result.Contains("30-15"));
         }
 
-        //[TestMethod]
-        //public void testscore4()
-        //{
-        //    Assert.AreEqual(game.score(5), 0);
-        //}
-
-        //[TestMethod]
-        //public void testdeuce()
-        //{
-
-        //    //a.gameresult = 3;
-        //    //b.gameresult = 3;
-        //    //bool result = game.IsDeuce();
-        //    //Assert.IsTrue(result);
-
-        //}
-
-        //[TestMethod]
-        //public void winner()
-        //{
-        //    //a.gameresult = 10;
-        //    //b.gameresult = 4;
-        //    //bool result = game.isWinnerGame();
-        //    //Assert.IsTrue(result);
-        //}
-
-        //[TestMethod]
-        //public void addsets()
-        //{
-        //    //a.gameresult = 10;
-        //    //b.gameresult = 4;
-        //    //game.addset();
-        //    //Assert.AreEqual(a.setresult, 1);
-        //}
-
-        //[TestMethod]
-        //public void iswinnerset()
-        //{
-        //    //a.setresult = 6;
-        //    //b.setresult = 4;
-        //    //game.IsWinnerSet();
-        //    //Assert.IsTrue(game.sets.Count == 0);
-        //}
-
-        //[TestMethod]
-        //public void gameresult()
-        //{
+        [TestMethod]
+        public void testscore4()
+        {
+            List<string> list = new List<string>() { "AAAABBB" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(game.sets.Count ==0);
+            Assert.IsTrue(game.games.Contains("A-40"));
 
 
-        //}
+        }
+
+        [TestMethod]
+        public void testdraw()
+        {
+            List<string> list = new List<string>() { "AB" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(result.Contains("15-15"));
+
+
+
+        }
+
+        [TestMethod]
+        public void winner()
+        {
+            List<string> list = new List<string>() { "AABB" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(result.Contains("30-30"));
+        }
+
+        [TestMethod]
+        public void tetscore()
+        {
+            List<string> list = new List<string>() { "AAAAAB" };
+            game.playGame(list);
+            List<string> result = game.games;
+            Assert.IsTrue(result.Contains(""));
+            Assert.IsTrue(game.sets.Count == 0);
+        }
+
+
 
     }
 }
